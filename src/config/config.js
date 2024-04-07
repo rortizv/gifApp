@@ -1,1 +1,1 @@
-export const GIF_API_KEY = "ph5BkxZXrblKY1fivoys7f0sMSn06WhJ";
+export const GIF_API_KEY = "";
