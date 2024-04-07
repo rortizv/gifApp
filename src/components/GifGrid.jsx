@@ -1,23 +1,26 @@
-import { useEffect, useState } from 'react';
 import { GifItem } from './GifItem';
-import { getGifs } from "../helpers/getGifs";
+import { useFetchGifs } from '../hooks/useFetchGifs';
 
 // eslint-disable-next-line react/prop-types
 export const GifGrid = ({ category }) => {
 
-    const [images, setImages] = useState([]);
+    const { images, isLoading } = useFetchGifs(category);
 
-    const getImages = async () => {
-        const gifs = await getGifs(category);
-        setImages(gifs);
-    }
-
-    useEffect(() => {
-        getImages();
-    }, []);
+   
     
     return (
         <>
+            {
+                isLoading
+                ? <div className='loader-cnt'>
+                    <div className="lds-ripple">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    </div>
+                : null
+            }
+            
             <h3>{category}</h3>
 
             <div className='display-flex g-1 flex-wrap'>
@@ -25,8 +28,7 @@ export const GifGrid = ({ category }) => {
                     images.map((image) => (
                         <GifItem
                             key={image.id}
-                            title={image.title}
-                            url={image.url}
+                            { ...image }
                         />
                     ))
                 }
