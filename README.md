@@ -10,7 +10,7 @@ Steps to run project:
 - Install node modules: npm i
 - Run: npm run dev
 
-
+See running here: https://raph-gif-app-react.netlify.app
 
 # React + Vite
 
